@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,9 +24,8 @@ jobs:
           pip install apache-airflow
           pip install -r requirements.txt
 
-      - name: Validate Airflow DAG
+      - name: Validate Airflow DAGs
         run: |
-          $env:AIRFLOW__CORE__DAGS_FOLDER = "$(Get-Location)\dags"
-          airflow scheduler --daemon
-        #   airflow db init
-        #   airflow dags list
+          export AIRFLOW__CORE__DAGS_FOLDER="$(pwd)/dags"
+          airflow db init
+          airflow dags list
