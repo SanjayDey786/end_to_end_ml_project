@@ -23,7 +23,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install apache-airflow
-          pip install -r end_to_end_ml_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Validate Airflow DAG
         run: |
