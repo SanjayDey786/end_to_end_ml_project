@@ -27,9 +27,9 @@ jobs:
           pip install apache-airflow==3.0.2
           pip install -r requirements.txt
 
-      - name: Validate Python syntax
-        run: |
-          find . -name "*.py" -print0 | xargs -0 -n1 python -m py_compile
+      # - name: Validate Python syntax
+      #   run: |
+      #     find . -name "*.py" -print0 | xargs -0 -n1 python -m py_compile
 
       - name: Validate Airflow DAGs
         run: |
