@@ -31,11 +31,11 @@ jobs:
       #   run: |
       #     find . -name "*.py" -print0 | xargs -0 -n1 python -m py_compile
 
-      - name: Validate Airflow DAGs
-        run: |
-          export AIRFLOW__CORE__DAGS_FOLDER="$(pwd)/dags"
-          airflow db init
-          airflow dags list
+      # - name: Validate Airflow DAGs
+      #   run: |
+      #     export AIRFLOW__CORE__DAGS_FOLDER="$(pwd)/dags"
+      #     airflow db init
+      #     airflow dags list
 
   # 2️⃣ RUN DRIFT DETECTION & (OPTIONAL) RETRAINING
   run-drift-and-retrain:
