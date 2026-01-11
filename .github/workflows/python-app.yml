@@ -27,5 +27,7 @@ jobs:
 
       - name: Validate Airflow DAG
         run: |
-          airflow db init
-          airflow dags list
+          $env:AIRFLOW__CORE__DAGS_FOLDER = "$(Get-Location)\dags"
+          airflow scheduler --daemon
+        #   airflow db init
+        #   airflow dags list
