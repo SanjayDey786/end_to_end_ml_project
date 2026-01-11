@@ -1,4 +1,4 @@
-name: CI-CD: Drift Detection & Retraining Workflow
+name: CI-CD Drift Detection & Retraining Workflow
 
 on:
   pull_request:
