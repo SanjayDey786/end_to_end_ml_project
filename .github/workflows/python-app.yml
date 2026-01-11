@@ -1,36 +1,31 @@
 name: ML_AutoTrained_Using_Drift_Detection
 
-
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest 
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            #STEP 1
-            - name: Checkout repository
-              uses: actions/checkout@v3 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            #STEP 2
-            - name: Set up Python
-              uses: actions/setup-python@v4
-              with: 
-                python-version: '3.13'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-            #STEP 3
-            - name: Install dependencies
-              run: |
-                python -m pip install --upgrade pip
-                pip install -r end_to_end_ml_project/requirements.txt
-            #STEP 4
-            - name: Run drift_retraining_dag.py
-              run: |
-                python end_to_end_ml_project/dags/drift_retraining_dag.py
-              
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install apache-airflow
+          pip install -r end_to_end_ml_project/requirements.txt
+
+      - name: Validate Airflow DAG
+        run: |
+          airflow db init
+          airflow dags list
